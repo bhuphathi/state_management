@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_management/state/futureprovider.dart';
+import 'package:state_management/state/streamprovider.dart';
 
-class FutureProviderWidget extends ConsumerWidget {
-  const FutureProviderWidget({super.key});
+class StreamProviderWidget extends ConsumerWidget {
+  const StreamProviderWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // return ref.watch(fetchFutureProvider).map(data: data, error: error, loading: loading)
     // return ref.watch(fetchFutureProvider).whenData((value) => null)
-    return ref.watch(fetchFutureProvider).when(
+    return ref.watch(streamProviderTest).when(
           data: (data) {
             return Center(
-              child: Text("Futureprovider data: ${data.name} ${data.age}"),
+              child: Text("Futureprovider data: ${data.toString()}"),
             );
           },
           error: (error, stackTrace) {

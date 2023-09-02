@@ -4,11 +4,13 @@ import 'package:state_management/widget/futureprovider_widget.dart';
 import 'package:state_management/widget/provider.dart';
 import 'package:state_management/widget/statenotifier_provider.dart';
 import 'package:state_management/widget/state_provider.dart';
+import 'package:state_management/widget/streamprovider_widget.dart';
 
 //Provider
 //StateProvider : for primitive values
 //StateNotifier & StateNotifierProvider : for objects
 //FutureProvider http request, async
+//SreamProvider
 
 void main() {
   runApp(
@@ -106,6 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
       content = const StateNotifierProviderWidget();
     } else if (pageName == "futureprovider") {
       content = const FutureProviderWidget();
+    } else if (pageName == "streamprovider") {
+      content = const StreamProviderWidget();
     }
 
     return Scaffold(
@@ -178,6 +182,19 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 setState(() {
                   pageName = "futureprovider";
+                });
+              },
+            ),
+            TextButton(
+              child: const Column(
+                children: [
+                  Icon(Icons.favorite),
+                  Text("StreamProvider"),
+                ],
+              ),
+              onPressed: () {
+                setState(() {
+                  pageName = "streamprovider";
                 });
               },
             ),
