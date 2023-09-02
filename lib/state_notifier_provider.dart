@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_management/provider.dart';
+import 'package:state_management/user.dart';
 
-final nameProvider = StateProvider<String>((ref) {
-  return 'default';
-});
-
-
-class StateProviderWidget extends ConsumerWidget {
-  const StateProviderWidget({super.key});
+class StateNotifierProviderWidget extends ConsumerWidget {
+  const StateNotifierProviderWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(nameProvider);
+    final state = ref.watch(userNotifierProvider);
 
     return Center(
       child: Padding(
@@ -22,27 +17,45 @@ class StateProviderWidget extends ConsumerWidget {
           children: <Widget>[
             Consumer(
               builder: (context, ref, child) {
-                final name = ref.read(nameProvider);
-                return Text("from Consumer provider widget: $name");
+                final name = ref.read(userNotifierProvider);
+                return Text(
+                    "from Consumer provider widget: ${name.name} ${name.age}");
               },
             ),
             const SizedBox(height: 10),
             const Text('Theme Name Provider:'),
             const SizedBox(height: 10),
             Text(
-              state,
+              state.name,
+              style: const TextStyle(color: Colors.amber),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              state.age.toString(),
               style: const TextStyle(color: Colors.amber),
             ),
             const SizedBox(height: 10),
             TextField(
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Test Here',
+                labelText: 'Name',
               ),
               onChanged: (value) {
-                ref.read(nameProvider.notifier).update((state) => value);
+                ref.read(userNotifierProvider.notifier).updateName(value);
               },
-            )
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Age',
+              ),
+              onChanged: (value) {
+                ref
+                    .read(userNotifierProvider.notifier)
+                    .updateAge(int.parse(value));
+              },
+            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:state_management/provider.dart';
+import 'package:state_management/state_notifier_provider.dart';
 import 'package:state_management/state_provider.dart';
 
 //Provider
@@ -98,7 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (pageName == "stateprovider") {
       content = const StateProviderWidget();
     } else if (pageName == "providerstate") {
-      content = ProviderWidget();
+      content = const ProviderWidget();
+    } else if (pageName == "statenotifier") {
+      content = const StateNotifierProviderWidget();
     }
 
     return Scaffold(
@@ -145,6 +148,19 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 setState(() {
                   pageName = "stateprovider";
+                });
+              },
+            ),
+            TextButton(
+              child: const Column(
+                children: [
+                  Icon(Icons.favorite),
+                  Text("State Notifier"),
+                ],
+              ),
+              onPressed: () {
+                setState(() {
+                  pageName = "statenotifier";
                 });
               },
             ),

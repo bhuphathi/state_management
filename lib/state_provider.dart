@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_management/provider.dart';
 
 final nameProvider = StateProvider<String>((ref) {
   return 'default';

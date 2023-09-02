@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 class User {
   final String name;
   final int age;
@@ -51,3 +53,19 @@ class User {
   @override
   int get hashCode => name.hashCode ^ age.hashCode;
 }
+
+class UserNotifier extends StateNotifier<User> {
+  UserNotifier(super.state);
+
+  void updateName(String value) {
+    state = state.copyWith(name: value);
+  }
+
+  void updateAge(int value) {
+    state = state.copyWith(age: value);
+  }
+}
+
+final userNotifierProvider = StateNotifierProvider<UserNotifier, User>((ref) {
+  return UserNotifier(User(name: "", age: 0));
+});
