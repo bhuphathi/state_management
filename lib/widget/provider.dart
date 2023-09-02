@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-//state can't be changed only access via ref.read, ref.watch or Consumer(builder: (context, ref, child) {ref.watch return Widget})
-final stringProvider = Provider<String>((ref) {
-  return "string provider test";
-});
-
-final intProvider = Provider<int>((ref) {
-  return 12;
-});
+import 'package:state_management/state/provider.dart';
 
 class ProviderWidget extends ConsumerStatefulWidget {
   const ProviderWidget({super.key});

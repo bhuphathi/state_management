@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:state_management/state/stateprovider.dart';
 
-final nameProvider = StateProvider<String>((ref) {
-  return 'default';
-});
 
 class StateProviderWidget extends ConsumerWidget {
   const StateProviderWidget({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_management/user.dart';
+import 'package:state_management/state/user_statenotifier.dart';
 
 class StateNotifierProviderWidget extends ConsumerWidget {
   const StateNotifierProviderWidget({super.key});
