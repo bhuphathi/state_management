@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:state_management/widget/futureprovider_widget.dart';
 import 'package:state_management/widget/provider.dart';
 import 'package:state_management/widget/statenotifier_provider.dart';
 import 'package:state_management/widget/state_provider.dart';
@@ -7,6 +8,7 @@ import 'package:state_management/widget/state_provider.dart';
 //Provider
 //StateProvider : for primitive values
 //StateNotifier & StateNotifierProvider : for objects
+//FutureProvider http request, async
 
 void main() {
   runApp(
@@ -102,6 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
       content = const ProviderWidget();
     } else if (pageName == "statenotifier") {
       content = const StateNotifierProviderWidget();
+    } else if (pageName == "futureprovider") {
+      content = const FutureProviderWidget();
     }
 
     return Scaffold(
@@ -161,6 +165,19 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 setState(() {
                   pageName = "statenotifier";
+                });
+              },
+            ),
+            TextButton(
+              child: const Column(
+                children: [
+                  Icon(Icons.favorite),
+                  Text("FutureProvider"),
+                ],
+              ),
+              onPressed: () {
+                setState(() {
+                  pageName = "futureprovider";
                 });
               },
             ),
