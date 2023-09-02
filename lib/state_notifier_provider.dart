@@ -8,6 +8,8 @@ class StateNotifierProviderWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(userNotifierProvider);
+    final userNameSelect =
+        ref.watch(userNotifierProvider.select((value) => value.name));
 
     return Center(
       child: Padding(
@@ -23,7 +25,9 @@ class StateNotifierProviderWidget extends ConsumerWidget {
               },
             ),
             const SizedBox(height: 10),
-            const Text('Theme Name Provider:'),
+            Text("notifierProvider.select: $userNameSelect"),
+            const SizedBox(height: 10),
+            const Text('State Notifier:'),
             const SizedBox(height: 10),
             Text(
               state.name,
