@@ -5,6 +5,7 @@ import 'package:state_management/widget/provider.dart';
 import 'package:state_management/widget/statenotifier_provider.dart';
 import 'package:state_management/widget/state_provider.dart';
 import 'package:state_management/widget/streamprovider_widget.dart';
+import 'package:state_management/widget/repository_provider_mainwidget.dart';
 
 //Provider
 //StateProvider : for primitive values
@@ -107,6 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
       content = const FutureProviderWidget();
     } else if (selectedPageName == "streamprovider") {
       content = const StreamProviderWidget();
+    } else if (selectedPageName == "repository") {
+      content = const FutureRepositoryProviderMainWidget();
     }
 
     return Scaffold(
