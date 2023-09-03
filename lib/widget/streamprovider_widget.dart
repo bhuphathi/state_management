@@ -12,7 +12,7 @@ class StreamProviderWidget extends ConsumerWidget {
     return ref.watch(streamProviderTest).when(
           data: (data) {
             return Center(
-              child: Text("Futureprovider data: ${data.toString()}"),
+              child: Text("Streamprovider data: ${data.toString()}"),
             );
           },
           error: (error, stackTrace) {
