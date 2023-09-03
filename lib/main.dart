@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:state_management/logger_riverpod.dart';
 import 'package:state_management/widget/futureprovider_widget.dart';
 import 'package:state_management/widget/provider.dart';
 import 'package:state_management/widget/statenotifier_provider.dart';
@@ -19,8 +20,9 @@ import 'package:state_management/widget/repository_provider_mainwidget.dart';
 
 void main() {
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    ProviderScope(
+      observers: [LoggerRiverpod()],
+      child: const MyApp(),
     ),
   );
 }
