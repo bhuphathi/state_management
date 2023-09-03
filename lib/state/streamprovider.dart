@@ -6,6 +6,7 @@ final streamProviderTest = StreamProvider((ref) async* {
   while (i < 100) {
     yield i;
     i++;
-    await Future.delayed(const Duration(milliseconds: 150));
+    await Future.delayed(const Duration(milliseconds: 50));
+    if (i == 99) i = 0;
   }
 });
