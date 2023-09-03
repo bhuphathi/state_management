@@ -12,6 +12,10 @@ import 'package:state_management/widget/streamprovider_widget.dart';
 //FutureProvider http request, async
 //SreamProvider
 
+// NotifierProvider (new in Riverpod 2.0)
+// AsyncNotifierProvider (new in Riverpod 2.0)
+// https://codewithandrea.com/articles/flutter-state-management-riverpod/
+
 void main() {
   runApp(
     const ProviderScope(
@@ -49,7 +53,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  var pageName;
+  final pageNames = [
+    {"btnName": "Default State", "actionName": "normal"},
+    {"btnName": "Provider", "actionName": "providerstate"},
+    {"btnName": "State Provider", "actionName": "stateprovider"},
+    {"btnName": "State Notifier", "actionName": "statenotifier"},
+    {"btnName": "Future Provider", "actionName": "futureprovider"},
+    {"btnName": "Stream Provider", "actionName": "streamprovider"},
+    {"btnName": "Repository", "actionName": "repository"},
+  ];
+  var selectedPageName;
 
   void _incrementCounter() {
     setState(() {
@@ -63,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget floatingBtn = const Text("");
     var title = 'State Management Demo Home Page';
 
-    if (pageName == "normal") {
+    if (selectedPageName == "normal") {
       content = Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -84,31 +97,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       );
     }
-
-    if (pageName == "provider") {
-      content = Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      );
-    } else if (pageName == "stateprovider") {
-      content = const StateProviderWidget();
-    } else if (pageName == "providerstate") {
+    if (selectedPageName == "providerstate") {
       content = const ProviderWidget();
-    } else if (pageName == "statenotifier") {
+    } else if (selectedPageName == "stateprovider") {
+      content = const StateProviderWidget();
+    } else if (selectedPageName == "statenotifier") {
       content = const StateNotifierProviderWidget();
-    } else if (pageName == "futureprovider") {
+    } else if (selectedPageName == "futureprovider") {
       content = const FutureProviderWidget();
-    } else if (pageName == "streamprovider") {
+    } else if (selectedPageName == "streamprovider") {
       content = const StreamProviderWidget();
     }
 
@@ -118,88 +115,21 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(title),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: <Widget>[
-            TextButton(
-              child: const Column(
-                children: [
-                  Icon(Icons.deblur),
-                  Text("Default State"),
-                ],
-              ),
-              onPressed: () {
-                setState(() {
-                  pageName = "normal";
-                });
-              },
-            ),
-            TextButton(
-              child: const Column(
-                children: [
-                  Icon(Icons.ac_unit),
-                  Text("Provider State"),
-                ],
-              ),
-              onPressed: () {
-                setState(() {
-                  pageName = "providerstate";
-                });
-              },
-            ),
-            TextButton(
-              child: const Column(
-                children: [
-                  Icon(Icons.favorite),
-                  Text("State Provider"),
-                ],
-              ),
-              onPressed: () {
-                setState(() {
-                  pageName = "stateprovider";
-                });
-              },
-            ),
-            TextButton(
-              child: const Column(
-                children: [
-                  Icon(Icons.favorite),
-                  Text("State Notifier"),
-                ],
-              ),
-              onPressed: () {
-                setState(() {
-                  pageName = "statenotifier";
-                });
-              },
-            ),
-            TextButton(
-              child: const Column(
-                children: [
-                  Icon(Icons.favorite),
-                  Text("FutureProvider"),
-                ],
-              ),
-              onPressed: () {
-                setState(() {
-                  pageName = "futureprovider";
-                });
-              },
-            ),
-            TextButton(
-              child: const Column(
-                children: [
-                  Icon(Icons.favorite),
-                  Text("StreamProvider"),
-                ],
-              ),
-              onPressed: () {
-                setState(() {
-                  pageName = "streamprovider";
-                });
-              },
-            ),
-          ],
-        ),
+        height: 84,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.all(8),
+            itemCount: pageNames.length,
+            itemBuilder: (BuildContext context, int index) {
+              return TextButton(
+                child: Text(pageNames[index]["btnName"]!),
+                onPressed: () {
+                  setState(() {
+                    selectedPageName = pageNames[index]["actionName"];
+                  });
+                },
+              );
+            }),
       ),
       body: content,
       floatingActionButton: floatingBtn,
