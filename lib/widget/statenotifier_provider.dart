@@ -8,6 +8,7 @@ class StateNotifierProviderWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(userNotifierProvider);
+    // watch state for selected property or field in a state provider
     final userNameSelect =
         ref.watch(userNotifierProvider.select((value) => value.name));
 
