@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:state_management/state/user_statenotifier.dart';
 import 'package:state_management/state/userno_stateprovider.dart';
 
+//provider inside a provider
 final futureUserRepositoryProvider = FutureProvider.family((ref, String input) {
   final userRepository = ref.watch(userRepositoryProvider);
   return userRepository.fetchUserData(input);
@@ -23,6 +24,7 @@ final futureUserRepositoryProvider = FutureProvider.family((ref, String input) {
 //use ref inside a class or function
 final userRepositoryProvider = Provider((ref) => UserRepository(ref));
 
+//using provider inside a class
 class UserRepository {
   final Ref ref;
   UserRepository(this.ref);

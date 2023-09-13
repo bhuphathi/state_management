@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_management/model/user_repository.dart';
+import 'package:state_management/model/user_repository_provider_in_provider.dart';
 
 class LoggerRiverpod extends ProviderObserver {
   @override
